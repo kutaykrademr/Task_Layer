@@ -1,0 +1,312 @@
+﻿@model Helpers.ViewModels.ProductListViewModel
+<table class="table table-hover">
+    <thead>
+        <tr style="text-align:center">
+            <th scope="col">#</th>
+            <th scope="col">ProductName</th>
+            <th scope="col">UnitPrice</th>
+            <th scope="col">UnitsInStock</th>
+            <th scope="col"><button data-toggle="modal" data-target="#addProduct" type="button" class="btn btn-dark">Add</button></th>
+        </tr>
+    </thead>
+    <tbody style="text-align:center">
+        @for (int i = 0; i < Model.Products.Count; i++)
+        {
+            <tr>
+                <th scope="row">@Model.Products[i].ProductId</th>
+                <th>@Model.Products[i].ProductName</th>
+                <th>@Model.Products[i].UnitPrice</th>
+                <th>@Model.Products[i].UnitsInStock</th>
+                <th>
+
+                    <button onclick="openProductModel(this.id)" id="@Model.Products[i].ProductId" type="button" class="btn btn-secondary">Update</button>
+                    <button onclick="deleteProduct(this.id)" id="@Model.Products[i].ProductId" type="button" class="btn btn-secondary">Delete</button>
+                </th>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Ürün Güncelle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade bs-example-modal-lg" id="updProductModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">Ürün Güncelle</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group row">
+                    <label class="col-sm-12 col-md-2 col-form-label">ProductName</label>
+                    <div class="col-sm-12 col-md-10">
+                        <input id="prdName" class="form-control" type="text" placeholder="" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-12 col-md-2 col-form-label">Unit Price</label>
+                    <div class="col-sm-12 col-md-10">
+                        <input id="untPrice" class="form-control" type="text" placeholder="" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-12 col-md-2 col-form-label">UnitsInStock</label>
+                    <div class="col-sm-12 col-md-10">
+                        <input id="untStock" class="form-control" type="text" placeholder="" required>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="updProdOp" class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="updateProduct(this.id)">Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal-lg" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">Ürün Ekle</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group row">
+                    <label class="col-sm-12 col-md-2 col-form-label">Başlık</label>
+                    <div class="col-sm-12 col-md-10">
+                        <input id="prodNameAdd" class="form-control" type="text" placeholder="" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Alt Başlık</label>
+                    <textarea id="unitPriceAdd" class="form-control"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Açıklama</label>
+                    <textarea id="unitStockAdd" class="form-control"></textarea>
+                </div>
+
+            </div>
+
+            <div id="updFaqOp" class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="AddProduct()">Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script>
+
+        
+        function AddProduct() {
+
+            $.ajax({
+                type: "POST",
+                url: '../Home/AddProduct',
+                cache: false,
+                data: { "ProductName": $("#prodNameAdd").val(), "UnitPrice": $("#unitPriceAdd").val(), "UnitsInStock": $("#unitStockAdd").val() },
+                dataType: "json",
+                async: true,
+                success: function (res) {
+
+                    if (res.success) {
+                        swal({
+                            text: "Ekleme İşlemi Başarılı...",
+                            icon: "success",
+                            button: "Tamam",
+                        }).then((value) => {
+                            location.reload();
+                        });
+                    }
+                    else {
+                        swal({
+                            text: "Ekleme İşlemi Başarısız...",
+                            icon: "warning",
+                            button: "Tamam",
+                        }).then((value) => {
+                            location.reload();
+                        });
+                    }
+                },
+                error: function (textStatus, errorThrown) {
+                    console.log(JSON.stringify(textStatus));
+                    console.log(textStatus);
+                }
+            });
+
+
+        }
+
+        function deleteProduct(id) {
+
+            if (id != "") {
+
+                swal({
+                    title: "Emin misiniz ?",
+                    text: "Ürün Silinecek!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                type: "Get",
+                                url: '../Home/DeleteProduct',
+                                cache: false,
+                                data: { "id": id },
+                                dataType: "json",
+                                async: true,
+                                success: function (res) {
+
+                                    if (res.success) {
+                                        swal({
+                                            text: "Silme İşlemi Başarılı...",
+                                            icon: "success",
+                                            button: "Tamam",
+                                        }).then((value) => {
+                                            location.reload();
+                                        });
+                                    }
+
+                                    else {
+                                        swal({
+                                            text: "Bir Hata Oluştu...",
+                                            icon: 'warning',
+                                        })
+                                    }
+                                },
+                                error: function (textStatus, errorThrown) {
+                                    console.log(JSON.stringify(textStatus));
+                                    console.log(textStatus);
+                                }
+                            });
+                        } else {
+                            swal("Silmekten Vazgeçtiniz.!");
+                        }
+                    });
+            }
+
+            else {
+                swal({
+                    text: "Id Null , Tekrar Deneyiniz !",
+                    icon: 'warning',
+                })
+            }
+        }
+
+        function openProductModel(id) {
+
+            $.ajax({
+                type: "GET",
+                url: '../Home/GetProductById',
+                cache: false,
+                data: { "id": id },
+                dataType: "json",
+                async: true,
+                success: function (res) {
+
+                    debugger;
+
+
+                    $("#prdName").val(res.productName);
+                    $("#untPrice").val(res.unitPrice);
+                    $("#untStock").val(res.unitsInStock);
+
+                    $("#updProdOp button:nth-of-type(2)").attr("id", id);
+                    $('#updProductModal').modal('toggle');
+
+
+                },
+                error: function (textStatus, errorThrown) {
+                    console.log(JSON.stringify(textStatus));
+                    console.log(textStatus);
+                }
+            });
+
+
+        }
+
+        function updateProduct(id) {
+
+            $.ajax({
+                type: "POST",
+                url: '../Home/UpdateProduct',
+                cache: false,
+                data: { "ProductId": id, "ProductName": $("#prdName").val(), "UnitPrice": $("#untPrice").val(), "UnitsInStock": $("#untStock").val() },
+                dataType: "json",
+                async: true,
+                success: function (res) {
+                    debugger;
+                    if (res.productName != "") {
+                        swal({
+                            text: "İşlem Başarılı...",
+                            icon: "success",
+                            button: "Tamam",
+                        }).then((value) => {
+                            location.reload();
+                        });
+
+                        $("#updProductModal").modal("toggle");
+
+                    }
+                    else {
+                        swal({
+                            text: "İşlem Başarısız...",
+                            icon: "success",
+                            button: "Tamam",
+                        }).then((value) => {
+                            location.reload();
+                        });
+                    }
+                },
+                error: function (textStatus, errorThrown) {
+                    console.log(JSON.stringify(textStatus));
+                    console.log(textStatus);
+                }
+            });
+
+
+        }
+
+
+    </script>
+
+}
