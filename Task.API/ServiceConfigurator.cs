@@ -2,6 +2,7 @@
 using Task.Business.Concrete;
 using Task.DataAccess.Abstract;
 using Task.DataAccess.Concrete.EntityFramework;
+using Task.DataAccess.Concrete.Postgre;
 
 namespace Task.API
 {
@@ -9,9 +10,10 @@ namespace Task.API
     {
         public static void Configure(IServiceCollection services)
         {
-   
-            services.AddSingleton<IProductDal, EfProductDal>();
-            services.AddSingleton<IProductService, ProductManager>();
+
+            //services.AddScoped<IProductDal, EfProductDal>(); //Mssql
+            services.AddScoped<IProductDal, PostgreProductDal>(); //PostgreSql
+            services.AddScoped<IProductService, ProductManager>();
 
         }
     }

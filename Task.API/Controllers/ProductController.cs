@@ -57,6 +57,8 @@ namespace Task.API.Controllers
         {
             try
             {
+                product.ProductId = 3;
+
                 _productService.Add(product); 
 
                 var addedProduct = product; 
@@ -76,7 +78,7 @@ namespace Task.API.Controllers
             try
             {
                 _productService.Update(product);
-
+      
                 var updatedProduct = product;
 
                 return Ok(updatedProduct);
