@@ -16,6 +16,7 @@ namespace Task.DataAccess.Concrete.Postgre
         }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<LogData> LogDatas { get; set; }
 
     }
 }

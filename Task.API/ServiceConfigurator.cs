@@ -11,9 +11,14 @@ namespace Task.API
         public static void Configure(IServiceCollection services)
         {
 
-            //services.AddScoped<IProductDal, EfProductDal>(); //Mssql
-            services.AddScoped<IProductDal, PostgreProductDal>(); //PostgreSql
+            //services.AddScoped<ILogDataDal, PostgreLogDataDal>(); 
+            //services.AddScoped<IProductDal, PostgreProductDal>();
+
+            services.AddScoped<ILogDataDal, EfLogDataDal>();
+            services.AddScoped<IProductDal, EfProductDal>();
+
             services.AddScoped<IProductService, ProductManager>();
+            services.AddScoped<ILogDataService, LogDataManager>();
 
         }
     }

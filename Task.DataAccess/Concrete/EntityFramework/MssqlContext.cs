@@ -14,7 +14,9 @@ namespace Task.DataAccess.Concrete.EntityFramework
         {
             optionsBuilder.UseSqlServer(@"Server=178.251.43.250,1433\\SQLEXPRESS;Database=TaskDB;User Id=sa;Password=Fidelio06;TrustServerCertificate=True;MultipleActiveResultSets=True;");
         }
+        public DbSet<LogData> LogDatas { get; set; }
         public DbSet<Product> Products { get; set; }
+        
 
     }
 }
