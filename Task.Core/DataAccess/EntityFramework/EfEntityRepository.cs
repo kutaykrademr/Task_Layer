@@ -6,21 +6,21 @@ namespace Task.Core.DataAccess.EntityFramework
 {
     public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
 
-         where TEntity : class, IEntity, new() //TEntity class olmalı , IEntity türünde olmalı , newlenebilmeli.
+         where TEntity : class, IEntity, new() 
 
-         where TContext : DbContext, new()  //TContext DbContext türünde olmalı , newlenebilmeli 
+         where TContext : DbContext, new()  
 
     {
 
         public void Add(TEntity entity)
         {
-            using (TContext context = new TContext())//using içindeki context garbage collector yardımıyla belleği hızlıca temizler.Performans için yazdık.
+            using (TContext context = new TContext())
             {
                 var addedEntity = context.Entry(entity);
 
-                addedEntity.State = EntityState.Added;//Ekleme işlemi yapılacağını bildirdik. 
+                addedEntity.State = EntityState.Added;
 
-                context.SaveChanges();//İşlemleri gerçekleştir.
+                context.SaveChanges();
             }
         }
 

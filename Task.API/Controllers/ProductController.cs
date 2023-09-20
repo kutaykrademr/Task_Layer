@@ -76,7 +76,7 @@ namespace Task.API.Controllers
             try
             {
                 _productService.Update(product);
-
+      
                 var updatedProduct = product;
 
                 return Ok(updatedProduct);

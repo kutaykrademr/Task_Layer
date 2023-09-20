@@ -93,7 +93,6 @@ namespace Task.UI.Controllers
         public async Task<IActionResult> AddProduct(Product product)
         {
 
-
             if (product == null)
             {
                 return BadRequest("Product data is invalid.");

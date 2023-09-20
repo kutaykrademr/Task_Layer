@@ -6,17 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 using Task.Entities.Concrete;
 
-namespace Task.DataAccess.Concrete.EntityFramework
+namespace Task.DataAccess.Concrete.Postgre
 {
-    public class MssqlContext : DbContext
+    public class PostgreContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=178.251.43.250,1433\\SQLEXPRESS;Database=TaskDB;User Id=sa;Password=Fidelio06;TrustServerCertificate=True;MultipleActiveResultSets=True;");
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=TaskDB;Username=postgres;Password=13121312");
         }
-        public DbSet<LogData> LogDatas { get; set; }
+
         public DbSet<Product> Products { get; set; }
-        
+        public DbSet<LogData> LogDatas { get; set; }
 
     }
 }
