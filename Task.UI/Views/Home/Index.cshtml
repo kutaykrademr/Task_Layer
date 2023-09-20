@@ -103,21 +103,27 @@
             <div class="modal-body">
 
                 <div class="form-group row">
-                    <label class="col-sm-12 col-md-2 col-form-label">Başlık</label>
+                    <label class="col-sm-12 col-md-2 col-form-label">Product Name</label>
                     <div class="col-sm-12 col-md-10">
                         <input id="prodNameAdd" class="form-control" type="text" placeholder="" required>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Alt Başlık</label>
-                    <textarea id="unitPriceAdd" class="form-control"></textarea>
+                <div class="form-group row">
+                    <label class="col-sm-12 col-md-2 col-form-label">Unit Price</label>
+                    <div class="col-sm-12 col-md-10">
+                        <input id="unitPriceAdd" class="form-control" type="text" placeholder="" required>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Açıklama</label>
-                    <textarea id="unitStockAdd" class="form-control"></textarea>
+                <div class="form-group row">
+                    <label class="col-sm-12 col-md-2 col-form-label">Unit Stock</label>
+                    <div class="col-sm-12 col-md-10">
+                        <input id="unitStockAdd" class="form-control" type="text" placeholder="" required>
+                    </div>
                 </div>
+
+
 
             </div>
 
@@ -134,7 +140,7 @@
 @section Scripts {
     <script>
 
-        
+
         function AddProduct() {
 
             $.ajax({
