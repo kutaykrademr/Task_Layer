@@ -26,6 +26,7 @@ namespace Task.API.Controllers
                 Products = products
             };
 
+            Constants.monitizer.PublishLog(new LogData() { Message = "Get Product Triggered" });
             return model;
         }
 

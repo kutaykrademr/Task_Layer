@@ -1,8 +1,7 @@
 ﻿using Helpers.Models;
 using Helpers.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using Task.UI.Models;
+using Task.Entities.Concrete;
 
 namespace Task.UI.Controllers
 {

@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task.UI", "Task.UI\Task.UI.csproj", "{35641B49-C4E2-4C18-A12C-ECE46A7DACE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task.UI", "Task.UI\Task.UI.csproj", "{35641B49-C4E2-4C18-A12C-ECE46A7DACE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task.API", "Task.API\Task.API.csproj", "{04F381B2-AFD7-4ACD-A17F-0BC4F5C12DFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task.API", "Task.API\Task.API.csproj", "{04F381B2-AFD7-4ACD-A17F-0BC4F5C12DFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task.Business", "Task.Business\Task.Business.csproj", "{A315A9EF-9219-469D-824B-7D47A7A8850F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task.Business", "Task.Business\Task.Business.csproj", "{A315A9EF-9219-469D-824B-7D47A7A8850F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task.Core", "Task.Core\Task.Core.csproj", "{C5317B52-C560-4DAB-8AD5-C8EBC011F11E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task.Core", "Task.Core\Task.Core.csproj", "{C5317B52-C560-4DAB-8AD5-C8EBC011F11E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task.DataAccess", "Task.DataAccess\Task.DataAccess.csproj", "{ED325B3D-6651-4EC8-A62A-1D9B450BDDA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task.DataAccess", "Task.DataAccess\Task.DataAccess.csproj", "{ED325B3D-6651-4EC8-A62A-1D9B450BDDA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task.Entities", "Task.Entities\Task.Entities.csproj", "{ED570305-346C-43CB-B8AB-C50676D28810}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task.Entities", "Task.Entities\Task.Entities.csproj", "{ED570305-346C-43CB-B8AB-C50676D28810}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "Helpers\Helpers.csproj", "{90F38972-D18B-405C-A8DD-4823C7CC6F6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helpers", "Helpers\Helpers.csproj", "{90F38972-D18B-405C-A8DD-4823C7CC6F6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task.Logging", "Task.Logging\Task.Logging.csproj", "{5A065DA9-A508-472A-950A-AC72BD962D18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{90F38972-D18B-405C-A8DD-4823C7CC6F6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90F38972-D18B-405C-A8DD-4823C7CC6F6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90F38972-D18B-405C-A8DD-4823C7CC6F6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A065DA9-A508-472A-950A-AC72BD962D18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A065DA9-A508-472A-950A-AC72BD962D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A065DA9-A508-472A-950A-AC72BD962D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A065DA9-A508-472A-950A-AC72BD962D18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

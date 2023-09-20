@@ -7,6 +7,7 @@ using Task.Core.Entities;
 
 namespace Task.Entities.Concrete
 {
+    [Serializable]
     public class LogData : IEntity
     {
         public int Id { get; set; }

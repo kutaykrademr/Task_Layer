@@ -20,7 +20,7 @@ namespace Task.Business.Concrete
         public List<Product> GetByCategory(int categoryId)
         {
             return _productDal.GetAll(x => x.CategoryId == categoryId);
-        }
+        } 
 
         public void Add(Product product)
         {

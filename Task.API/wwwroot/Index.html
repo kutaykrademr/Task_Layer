@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <title>Welcome Page</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="layout.css" type="text/css">
+    <script src="jquery.js"></script>
+    <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
+</head>
+<body>
+    <div class="wrapper row1">
+        <header id="header" class="clear">
+            <div id="hgroup" style="width: 100%;">
+                <div style="display:inline-block">
+                    <h1 style="color: black;" id="appname"></h1>
+                </div>
+                <div style="display:inline-block;float:right">
+                    <h2 style="font-size: 20px;margin-top:15px" id="ip"></h2>
+                </div>
+            </div>
+
+        </header>
+    </div>
+    <!-- content -->
+    <div class="wrapper row2">
+        <div id="container" class="clear">
+            <!-- content body -->
+            <section id="shout">
+                <h2 style="font-size:20px" id="workstatus"></h2>
+
+            </section>
+
+            <!-- / content body -->
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+
+    $(document).ready(function () {
+        $.ajax({
+            url: "../Info/GetAppInfo",
+            type: "GET",
+            success: function (data) {
+                $("#appname").html(data.appName);
+                $("#ip").html(data.ipAddress);
+                if (data.startSuccesful == 0) {
+                    $("#workstatus").html("<span style='color:#e4be00'>Application is currently loading</span>");
+                }
+                if (data.startSuccesful == 1) {
+                    $("#workstatus").html("<span style='color:#00d000'>Application started successfully</span>");
+                }
+                if (data.startSuccesful == -1) {
+                    $("#workstatus").html("<span style='color:#ff0000'>Application error in startup</span>");
+                }
+            }
+        });
+    });
+
+</script>

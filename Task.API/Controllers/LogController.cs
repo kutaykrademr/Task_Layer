@@ -15,11 +15,30 @@ namespace Task.API.Controllers
             _logDataService = logDataService;
         }
 
+
         [HttpGet]
         public List<LogData> Get()
         {
             return _logDataService.GetAll();
 
+        }
+
+        [HttpPost]
+        public IActionResult Post(LogData logData)
+        {
+            try
+            {
+                _logDataService.Add(logData);
+
+                var addedLogs = logData;
+
+                return Ok(addedLogs);
+            }
+            catch (Exception ex)
+            {
+                // Hata yönetimi
+                return StatusCode(500, $"İç Sunucu Hatası: {ex.Message}");
+            }
         }
     }
 }

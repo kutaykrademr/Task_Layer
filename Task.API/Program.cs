@@ -9,6 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Configuration.GetSection("PlatformSettings").Bind(Constants.settings);
+
 ServiceConfigurator.Configure(builder.Services);
 
 var app = builder.Build();
@@ -22,8 +24,16 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+DefaultFilesOptions DefaultFile = new DefaultFilesOptions();
+DefaultFile.DefaultFileNames.Clear();
+DefaultFile.DefaultFileNames.Add("Index.html");
+app.UseDefaultFiles(DefaultFile);
+app.UseStaticFiles();
+
 app.UseAuthorization();
 
 app.MapControllers();
+
+MainWorker.InitializeService();
 
 app.Run();
